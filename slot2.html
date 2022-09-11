@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            position:relative;
+        }
+        #box{
+            position:absolute;
+            border:1px solid #ccf;
+            border-radius:10px;
+            top:50px;
+            left:100px;
+            padding:40px;
+            background-color:white;
+            box-shadow: 4px 4px gray;
+            margin:10px;
+            
+        }
+        #myForm{
+            padding:8px 0 8px 15px;
+            vertical-align: middle;
+        }
+        #okay{
+            margin-top:30px;
+            margin-right:10px;
+        }
+        #title{
+            height:50px;
+        }
+        #btn{
+            margin:40px 20px 20px 20px;
+        }
+        #comment{
+            padding:10px;
+            font-weight:bold;
+            color:red;
+            font-size:120%;
+            height:30px;
+            width:50%;
+            display:table-cell;
+            vertical-align:middle;
+            text-align:center;
+            letter-spacing: 5px;
+        }
+        table th{
+            width:10%;
+            border:1px solid #ccf;
+            padding:5px 10px;
+        }
+        table td{
+            border:1px solid #ccf;
+            text-align:right;
+            padding:5px 10px;
+        }
+        #box_2{
+            display:none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="box">
+        <form name="form_1">
+            <p>タイトル入力(省略可）</p>
+            <input type="text" name="title" id="myForm" size="50" />
+            
+            <p>作成したい台数を選択（最大20台）</p>
+            <input type="radio" name="count" value="1" />1
+            <input type="radio" name="count" value="2" />2
+            <input type="radio" name="count" value="3" />3
+            <input type="radio" name="count" value="4" />4
+            <input type="radio" name="count" value="5" />5
+            <input type="radio" name="count" value="6" />6
+            <input type="radio" name="count" value="7" />7
+            <input type="radio" name="count" value="8" />8
+            <input type="radio" name="count" value="9" />9
+            <input type="radio" name="count" value="10" />10<br/>
+            <input type="radio" name="count" value="11" />11
+            <input type="radio" name="count" value="12" />12
+            <input type="radio" name="count" value="13" />13
+            <input type="radio" name="count" value="14" />14
+            <input type="radio" name="count" value="15" />15
+            <input type="radio" name="count" value="16" />16
+            <input type="radio" name="count" value="17" />17
+            <input type="radio" name="count" value="18" />18
+            <input type="radio" name="count" value="19" />19
+            <input type="radio" name="count" value="20" />20
+            
+            <p>入力項目を選択（複数選択可）</p>
+            <input type="checkbox" name="koumoku" value="daiNumber" />台番号<br/>
+            <input type="checkbox" name="koumoku" value="daiBb" />BB回数<br/>
+            <input type="checkbox" name="koumoku" value="daiRb" />RB回数<br/>
+            <input type="checkbox" name="koumoku" value="daiLotate" />総回転数<br/>
+            <input type="checkbox" name="koumoku" value="daiSamai" />差枚
+        </form>
+        
+        <button id="okay">決定</button>
+        <button id="cancel">キャンセル</button>
+    </div>    
+    
+    <div id="box_2">
+    <h1 id="title"></h1>
+    <p id ="comment"></p>
+    <button id="btn">編集</button>
+    <button id="confirm">保存</button>
+    <table>
+        <tr>
+            <th>台番号</th>
+            <th>BB回数</th>
+            <th>RB回数</th>
+            <th>総回転数</th>
+            <th>差枚</th>
+            <th>BB確率</th>
+            <th>RB確率</th>
+            <th>合成確率</th>
+            <th>ぶどう確率</th>
+        </tr>
+        <tr id = "td_1"></tr>
+        <tr id = "td_2"></tr>
+        <tr id = "td_3"></tr>
+        <tr id = "td_4"></tr>
+        <tr id = "td_5"></tr>
+        <tr id = "td_6"></tr>
+        <tr id = "td_7"></tr>
+        <tr id = "td_8"></tr>
+        <tr id = "td_9"></tr>
+        <tr id = "td_10"></tr>
+        
+        
+        
+        
+        
+        
+        <tr id = "syukei"></tr>
+    </table>
+    </div>
+    
+    
+    
+<script>
+//HTML要素の取得
+const h1 = document.getElementById('title');
+const td_1 = document.getElementById('td_1');
+const btn = document.getElementById('btn');
+const okay = document.getElementById('okay');
+const confirm = document.getElementById('confirm');
+const comment = document.getElementById('comment');
+const box = document.getElementById('box');
+const box_2 = document.getElementById('box_2');
+
+
+let number;
+let bb;
+let rb;
+let lotate;
+let samai;
+let count = 0;
+
+//promptメソッドの実行
+okay.addEventListener('click',() => {
+    box.style.display = 'none';
+    const count = document.forms.form_1.count.value;
+    const itemList = document.forms.form_1.koumoku;
+    //console.log(count);
+    
+    for(let i=1;i<=count;i++){
+        alert(i + '台目入力');
+        
+        number=+prompt('【' + i + '台目】　台番号入力');
+        bb = +prompt('【' + number + '番台】　BB回数入力');
+        rb=+prompt('【' + number + '番台】　RB回数入力');
+        lotate=+prompt('【' + number + '番台】　回転数入力');
+        samai =  +prompt('【' + number + '番台】　差枚入力');
+    }
+    
+});
+
+
+//BB確率の関数を実行
+const bbCount = (roll,big) => {
+    return Math.ceil(roll / big);
+};
+
+//RB確率の関数を実行
+const rbCount = (roll,reg) => {
+    return Math.ceil(roll / reg);
+};
+
+//合成確率の関数を実行
+const totalCount = (roll,big,reg) => {
+    const bbRb = big + reg;
+    return Math.ceil(roll / bbRb);
+}; 
+
+//空のオブジェクト作成
+const myObj = {};
+
+//promptで入力した数値をオブジェクトに格納
+myObj.number = number;
+myObj.bb = bb;
+myObj.rb = rb;
+myObj.lotate = lotate;
+myObj.samai = samai;
+myObj.bbCount = bbCount(lotate,bb);
+myObj.rbCount = rbCount(lotate,rb);
+myObj.totalCount = totalCount(lotate,bb,rb);
+
+//タイトルをHTMLに出力
+box_2.style.display = 'inline';
+//const title = document.forms.title.value;
+
+
+//格納したオブジェクトをHTMLに出力
+for(let p in myObj){
+    
+    const text = document.createElement('td');
+    text.textContent = myObj[p];
+    //作成したtd要素を、tr要素のid=td_1の子要素に１つずつ表示
+    td_1.appendChild(text);
+}
+
+//btn（編集)をクリックすると、各項目クリックで編集可能にしたい
+btn.addEventListener('click',() => {
+    comment.textContent = '編集項目を選択してください';
+    comment.style.border = `3px double red`;
+    comment.style.background = `-webkit-repeating-linear-gradient(-45deg,#f0f8ff,#f0f8ff,#e9f4ff 3px,#e9f4ff 7px)`;
+    comment.style.background = `repeating-linear-gradient(-45deg,#f0f8ff,#f0f8ff 3px,#e9f4ff 3px,#e9f4ff 7px)`;
+});
+
+
+
+
+//const syukei = document.getElementById('syukei');
+</script>
+</body>
+</html>
